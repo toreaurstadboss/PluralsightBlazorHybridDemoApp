@@ -1,0 +1,21 @@
+﻿@page "/"
+
+<h1>Wired Brain Coffee</h1>
+
+Welcome to the coffee browser app.
+
+@*<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<h3>Files in c:\temp</h3>
+
+@{
+    var filesInTemp = Directory.GetFiles(@"c:\temp");
+    foreach (var file in filesInTemp)
+    {
+        <ul>
+            <li><span style="font-family:'OpenSansRegular, Comic Sans MS'">@file</span></li>
+        </ul>
+    }
+}*@
