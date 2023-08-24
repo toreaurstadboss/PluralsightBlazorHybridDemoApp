@@ -1,4 +1,5 @@
-﻿
+﻿@inject AuthenticationStateProvider AuthStateProvider
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
          <a class="navbar-brand" href="">
@@ -11,6 +12,7 @@
     </div>
 </div>
 
+
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
@@ -18,20 +20,32 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="coffees">
+        <AuthorizeView>
+            <Authorized>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="coffees">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Coffees
+                </NavLink>
+            </div>
+             <div class="nav-item px-3">
+                    <NavLink class="nav-link clickableItem" href="coffees" @onclick="Logout">
+                    <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                </NavLink>
+            </div>
+           </Authorized>
 
-                @*      <FontAwesomeIcon Icon="@Icon.House" />
-
-               <FontAwesomeIcon Icon="@Icon.Google" IconType="IconType.Brands" />*@
-
-                <span class="oi oi-list-rich" aria-hidden="true"></span>       <mobile:FontAwesomeIcon Icon="{x:Static core:Icon.Google}" />
-                Coffees
+        <NotAuthorized>
+             <div class="nav-item px-3">
+                    <NavLink class="nav-link clickableItem" href="coffees" @onclick="Login">
+                <span class="oi oi-account-login" aria-hidden="true"></span> Login
             </NavLink>
         </div>
-      
+
+        </NotAuthorized>
+        </AuthorizeView>
     </nav>
 </div>
+
 
 @code {
     private bool collapseNavMenu = true;
@@ -42,4 +56,19 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+    private async Task Login()
+    {
+        var authStateProvider = (CustomAuthStateProvider) AuthStateProvider;
+        await authStateProvider.LogInAsync();
+
+    }
+
+    private void Logout()
+    {
+        var authStateProvider = (CustomAuthStateProvider)AuthStateProvider;
+        authStateProvider.Logout();
+        
+    }
+
 }

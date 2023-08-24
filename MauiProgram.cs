@@ -1,6 +1,8 @@
 ﻿using Brushtail.FontAwesome.Mobile;
+using MauiApp1.Auth;
 using MauiApp1.Data;
 using MauiApp1.Library.Data;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Logging;
 //using MauiApp1.Data;
 
@@ -19,6 +21,8 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
+		builder.Services.AddAuthorizationCore();
+		builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 		builder.Logging.AddDebug();
 #endif
 

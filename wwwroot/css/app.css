@@ -12,6 +12,13 @@ a, .btn-link {
     color: #0071c1;
 }
 
+.clickableItem {
+    cursor: pointer;
+    border-radius:10px;
+    box-shadow:4px 4px 4px gray;
+}
+
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
