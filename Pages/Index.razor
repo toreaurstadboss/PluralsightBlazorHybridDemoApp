@@ -1,8 +1,15 @@
 ﻿@page "/"
+@*@attribute [Authorize]*@
 
 <h1>Wired Brain Coffee</h1>
-
-Welcome to the coffee browser app.
+<AuthorizeView>
+    <Authorized>
+        Welcome to the coffee browser app.
+    </Authorized>
+    <NotAuthorized>
+        Please log in.
+    </NotAuthorized>
+</AuthorizeView>
 
 
 @*<h1>Hello, world!</h1>
