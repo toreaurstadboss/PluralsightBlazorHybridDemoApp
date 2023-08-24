@@ -7,6 +7,9 @@
 
     <main>
         <div class="top-row px-6">
+            <AuthorizeView>
+                Logged in: @context.User.Identity?.Name
+            </AuthorizeView>
             <a href="https://www.thomasclaudiushuber.com/" target="_blank">About</a>
         </div>
 

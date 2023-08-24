@@ -35,7 +35,14 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
        
         */
 
-        var identity = new ClaimsIdentity("Custom");
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.Name, "Toreboss"),
+            new Claim(ClaimTypes.Role, "Admin")
+        };
+
+        var identity = new ClaimsIdentity(claims, "Custom");
+
         var authenticatedUser = new ClaimsPrincipal(identity);
         return Task.FromResult(authenticatedUser);
     }
